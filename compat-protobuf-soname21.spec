@@ -4,7 +4,7 @@
 #
 Name     : compat-protobuf-soname21
 Version  : 3.10.1
-Release  : 59
+Release  : 60
 URL      : https://github.com/protocolbuffers/protobuf/releases/download/v3.10.1/protobuf-all-3.10.1.tar.gz
 Source0  : https://github.com/protocolbuffers/protobuf/releases/download/v3.10.1/protobuf-all-3.10.1.tar.gz
 Summary  : Google's Data Interchange Format
@@ -42,6 +42,15 @@ Requires: compat-protobuf-soname21-license = %{version}-%{release}
 
 %description lib
 lib components for the compat-protobuf-soname21 package.
+
+# manual things not autospec'd to hack around onnx not working with
+# most recent protobuf version
+%package dev
+Summary: dev components for the compat-protobuf-soname21 package.
+Group: Development
+
+%description dev
+dev components for the compat-protobuf-soname21 package.
 
 
 %package license
@@ -215,6 +224,9 @@ rm -fr %{buildroot}/usr/lib/python3.8/site-packages/protobuf*
 ## install_append end
 
 %files
+%defattr(-,root,root,-)
+
+%files dev
 %defattr(-,root,root,-)
 
 %files lib
