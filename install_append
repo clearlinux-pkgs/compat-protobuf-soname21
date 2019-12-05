@@ -2,3 +2,5 @@ pushd python
 python ./setup.py install --root=%{buildroot} --cpp_implementation
 python3 ./setup.py install --root=%{buildroot} --cpp_implementation
 popd
+rm -fr %{buildroot}/usr/lib/python3.8/site-packages/google
+rm -fr %{buildroot}/usr/lib/python3.8/site-packages/protobuf*
