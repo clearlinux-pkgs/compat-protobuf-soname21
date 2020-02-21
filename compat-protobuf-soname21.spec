@@ -4,7 +4,7 @@
 #
 Name     : compat-protobuf-soname21
 Version  : 3.10.1
-Release  : 60
+Release  : 61
 URL      : https://github.com/protocolbuffers/protobuf/releases/download/v3.10.1/protobuf-all-3.10.1.tar.gz
 Source0  : https://github.com/protocolbuffers/protobuf/releases/download/v3.10.1/protobuf-all-3.10.1.tar.gz
 Summary  : Google's Data Interchange Format
@@ -14,12 +14,9 @@ Requires: compat-protobuf-soname21-lib = %{version}-%{release}
 Requires: compat-protobuf-soname21-license = %{version}-%{release}
 Requires: setuptools
 Requires: six
-BuildRequires : apache-maven
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-golang
-BuildRequires : buildreq-mvn
-BuildRequires : buildreq-php
 BuildRequires : emacs
 BuildRequires : python3-dev
 BuildRequires : setuptools
@@ -43,15 +40,6 @@ Requires: compat-protobuf-soname21-license = %{version}-%{release}
 %description lib
 lib components for the compat-protobuf-soname21 package.
 
-# manual things not autospec'd to hack around onnx not working with
-# most recent protobuf version
-%package dev
-Summary: dev components for the compat-protobuf-soname21 package.
-Group: Development
-
-%description dev
-dev components for the compat-protobuf-soname21 package.
-
 
 %package license
 Summary: license components for the compat-protobuf-soname21 package.
@@ -73,7 +61,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1575570291
+export SOURCE_DATE_EPOCH=1582310044
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -83,7 +71,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1575570291
+export SOURCE_DATE_EPOCH=1582310044
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-protobuf-soname21
 cp %{_builddir}/protobuf-3.10.1/LICENSE %{buildroot}/usr/share/package-licenses/compat-protobuf-soname21/1b5a14d06dd784e88dadc5c68344be2dc13875b6
@@ -224,9 +212,6 @@ rm -fr %{buildroot}/usr/lib/python3.8/site-packages/protobuf*
 ## install_append end
 
 %files
-%defattr(-,root,root,-)
-
-%files dev
 %defattr(-,root,root,-)
 
 %files lib
